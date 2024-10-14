@@ -1,1 +1,1 @@
-# ico-ai-server-deployment
+# Components for ICO AI Server Deployment
