@@ -1,13 +1,12 @@
 ---
 - name: Provision AI tools on server
-  hosts: all
+  hosts: localhost
 
   tasks:
   - name: Install packages
     apt:
       pkg:
-      - apache2
-      - nginx
+      - pip
 
   - name: Install Jupyter python package
     ansible.builtin.pip:
