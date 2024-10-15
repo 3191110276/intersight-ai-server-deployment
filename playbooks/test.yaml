@@ -1,1 +1,10 @@
+---
+- name: Provision AI tools on server
+  hosts: all
 
+  tasks:
+  - name: Install packages
+    apt:
+      pkg:
+      - apache2
+      - nginx
