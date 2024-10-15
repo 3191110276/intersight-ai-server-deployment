@@ -11,3 +11,10 @@
 
   - name: Install Ollama
     ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
+
+  - name: Install Ollama Python package
+    ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
+
+  - name: Install bottle python package
+    ansible.builtin.pip:
+      name: ollama
