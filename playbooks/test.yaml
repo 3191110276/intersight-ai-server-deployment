@@ -9,10 +9,11 @@
       - apache2
       - nginx
 
-  - name: Install Ollama
-    ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
+  - name: Install Jupyter python package
+    ansible.builtin.pip:
+      name: jupyterlab
 
-  - name: Install Ollama Python package
+  - name: Install Ollama
     ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
 
   - name: Install bottle python package
