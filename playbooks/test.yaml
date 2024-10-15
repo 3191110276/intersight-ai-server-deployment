@@ -8,3 +8,6 @@
       pkg:
       - apache2
       - nginx
+
+  - name: Install Ollama
+    ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
