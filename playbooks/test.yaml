@@ -21,8 +21,10 @@
       state: present
     with_items:
     - python3.12
-    - python3.12-pip
     - python3.12-venv
+
+  - name: Install pip for Python 3.12
+    ansible.builtin.shell: "python3.12 -m ensurepip --upgrade"
 
   - name: Get Python 3.12 Pythonpath
     shell: "which python3.12"
