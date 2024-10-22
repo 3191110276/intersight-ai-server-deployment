@@ -29,19 +29,26 @@
     changed_when: false
 
   - name: Create Python Virtual Environment
-    shell: "{{ python_version.stdout }} -m venv ai"
+    shell: "{{ python_path.stdout }} -m venv ai"
     args:
       creates: "ai"
-  
+
   - name: Install packages
     apt:
       pkg:
       - pip
       - docker.io
 
-  - name: Install Jupyter python package
-    ansible.builtin.pip:
-      name: jupyterlab
+  #- name: Install Jupyter python package
+  #  ansible.builtin.pip:
+  #    name: jupyterlab
+  
+  - name: Adding Python packages via pip
+    pip:
+      executable: "~/ai/bin/pip"
+      name:
+      - jupyterlab
+      - notebook
 
   - name: Install Ollama
     ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
