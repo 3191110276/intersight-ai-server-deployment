@@ -21,6 +21,7 @@
       state: present
     with_items:
     - python3.12
+    - python3.12-pip
     - python3.12-venv
 
   - name: Get Python 3.12 Pythonpath
