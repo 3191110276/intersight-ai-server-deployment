@@ -27,6 +27,11 @@
     shell: "which python3.12"
     register: python_path
     changed_when: false
+
+  - name: Create Python Virtual Environment
+    shell: "{{ python_version.stdout }} -m venv ai"
+    args:
+      creates: "ai"
   
   - name: Install packages
     apt:
