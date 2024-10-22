@@ -41,10 +41,6 @@
       pkg:
       - pip
       - docker.io
-
-  #- name: Install Jupyter python package
-  #  ansible.builtin.pip:
-  #    name: jupyterlab
   
   - name: Adding Python packages via pip
     pip:
@@ -52,22 +48,13 @@
       name:
       - jupyterlab
       - notebook
-
-  - name: Adding Python packages via pip
-    shell: python3.12 -m pip install {{ item }}
-    with_items:
-        - jupyterlab
-        - notebook
+      - ollama
 
   - name: Install Ollama
     ansible.builtin.shell: curl -fsSL https://ollama.com/install.sh | sh
 
-  - name: Install Ollama python package
-    ansible.builtin.pip:
-      name: ollama
-
   - name: Start Jupyter Server
-    shell: "jupyter lab --no-browser --port=8090 --ip=0.0.0.0 > ./logs/jupyter.log 2>&1 &"
+    shell: "/home/ubuntu/ai-venv/bin/jupyter lab --no-browser --port=8090 --ip=0.0.0.0 > ./logs/jupyter.log 2>&1 &"
     async: 2
 
   - name: Getting the Jupyter Server token
