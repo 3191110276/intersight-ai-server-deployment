@@ -7,6 +7,26 @@
     ansible.builtin.file:
       path: ./logs
       state: directory
+
+  - name: Add APT Repository for Python
+    ansible.builtin.shell: add-apt-repository ppa:deadsnakes/ppa
+
+  - name: Update APT
+    ansible.builtin.shell: apt update
+
+  - name: Install Python 3.12
+    become: true
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - python3.12
+    - python3.12-venv
+
+  - name: Get Python 3.12 Pythonpath
+    shell: "which python3.12"
+    register: python_path
+    changed_when: false
   
   - name: Install packages
     apt:
