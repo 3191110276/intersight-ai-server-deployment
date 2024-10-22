@@ -3,6 +3,11 @@
   hosts: localhost
 
   tasks:
+  - name: Create a log directory
+    ansible.builtin.file:
+      path: ./logs
+      state: directory
+  
   - name: Install packages
     apt:
       pkg:
@@ -19,3 +24,11 @@
   - name: Install Ollama python package
     ansible.builtin.pip:
       name: ollama
+
+  - name: Start Jupyter Server
+    shell: "jupyter lab --no-browser --port=8090 --ip=0.0.0.0 > ./logs/jupyter.log 2>&1 &"
+    async: 2
+
+  - name: Getting the Jupyter Server token
+    shell: "cat jupyter.log | grep token"
+    register: token
