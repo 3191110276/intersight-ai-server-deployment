@@ -32,9 +32,9 @@
     changed_when: false
 
   - name: Create Python Virtual Environment
-    shell: "{{ python_path.stdout }} -m venv ./ai-venv"
+    shell: "{{ python_path.stdout }} -m venv /home/ubuntu/ai-venv"
     args:
-      creates: "./ai-venv"
+      creates: "/home/ubuntu/ai-venv"
 
   - name: Install packages
     apt:
@@ -48,7 +48,7 @@
   
   - name: Adding Python packages via pip
     pip:
-      executable: "~/ai-venv/bin/pip"
+      executable: "/home/ubuntu/ai-venv/bin/pip"
       name:
       - jupyterlab
       - notebook
